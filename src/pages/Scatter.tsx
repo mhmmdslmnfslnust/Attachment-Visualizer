@@ -48,7 +48,7 @@ export function Scatter(){
       .attr('transform', `translate(${margin.left},${margin.top})`)
 
     const allVals = points.flatMap(p=> [p.anxiety ?? 0, p.avoidance ?? 0])
-    const maxVal = Math.max(7, d3.max(allVals) ?? 7)
+    const maxVal = Math.max(8, d3.max(allVals) ?? 8)
 
     const x = d3.scaleLinear().domain([0, maxVal]).range([0, innerW])
     const y = d3.scaleLinear().domain([0, maxVal]).range([innerH, 0])
@@ -58,10 +58,10 @@ export function Scatter(){
       const thrX = 4
       const thrY = 4
       const zones: Zone[] = [
-        { name: 'Secure', color: '#22c55e', alpha: 0.08, x0: 0,    x1: thrX, y0: 0,    y1: thrY },
-        { name: 'Dismissive Avoidant', color: '#3b82f6', alpha: 0.06, x0: 0,    x1: thrX, y0: thrY, y1: maxVal },
-        { name: 'Anxious/Preoccupied', color: '#f59e0b', alpha: 0.08, x0: thrX, x1: maxVal, y0: 0,    y1: thrY },
-        { name: 'Fearful/Disorganized', color: '#ef4444', alpha: 0.06, x0: thrX, x1: maxVal, y0: thrY, y1: maxVal },
+        { name: 'Secure', color: '#22c55e', alpha: 0.2, x0: 0,    x1: thrX, y0: 0,    y1: thrY },
+        { name: 'Dismissive Avoidant', color: '#3b82f6', alpha: 0.2, x0: 0,    x1: thrX, y0: thrY, y1: maxVal },
+        { name: 'Anxious/Preoccupied', color: '#f59e0b', alpha: 0.2, x0: thrX, x1: maxVal, y0: 0,    y1: thrY },
+        { name: 'Fearful/Disorganized', color: '#ef4444', alpha: 0.2, x0: thrX, x1: maxVal, y0: thrY, y1: maxVal },
       ]
 
       const zonesG = g.append('g')
@@ -83,7 +83,7 @@ export function Scatter(){
 
     // grid
     g.append('g')
-      .attr('stroke', '#e2e8f0')
+      .attr('stroke', '#94a3b8')
       .attr('stroke-opacity', 0.6)
       .selectAll('line.h')
   .data(y.ticks())
@@ -92,7 +92,7 @@ export function Scatter(){
   .attr('y1', (d: number)=>y(d)).attr('y2', (d: number)=>y(d))
 
     g.append('g')
-      .attr('stroke', '#e2e8f0')
+      .attr('stroke', '#94a3b8')
       .attr('stroke-opacity', 0.6)
       .selectAll('line.v')
   .data(x.ticks())
